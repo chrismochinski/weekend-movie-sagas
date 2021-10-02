@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './MovieList.css';
 
 import { useHistory } from 'react-router-dom';
-import MovieItemDetail from './MovieItemDetail';
+import MovieItem from './MovieItem';
 
 function MovieList() {
 
@@ -12,27 +12,21 @@ function MovieList() {
     const movies = useSelector(store => store.movies);
 
     useEffect(() => {
+        console.log('Page loaded. Fetching movies:', movies)
         dispatch({ type: 'FETCH_MOVIES' });
     }, []);
 
-    const handleMovieClick = (movie) => {
-        console.log('clicked on', movie.title)
-        history.push('/movie-details');
-    }
-    // both the movie title and poster have the same click handler
+
 
     return (
         <main>
             <h1>MovieList</h1>
             <section className="movies">
-                {movies.map(movie => {
-                    return (
-                        <div className="clickableMoviePoster" key={movie.id}  >
-                            <h3 onClick={() => handleMovieClick(movie)}>{movie.title}</h3>
-                            <img onClick={() => handleMovieClick(movie)} src={movie.poster} alt={movie}/>
-                        </div>
-                    );
-                })}
+                {movies.map(movie => (
+
+                    <MovieItem movie={movie} />
+
+                ))}
             </section>
         </main>
 
