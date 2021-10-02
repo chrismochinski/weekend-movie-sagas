@@ -7,8 +7,9 @@ import MovieItem from './MovieItem';
 
 function MovieList() {
 
-    const history = useHistory();
     const dispatch = useDispatch();
+    const history = useHistory();
+
     const movies = useSelector(store => store.movies);
 
     useEffect(() => {
@@ -18,16 +19,17 @@ function MovieList() {
     }, []);
 
 
-
     return (
         <main>
             <h1>MovieList</h1>
             <section className="movies">
-                {movies.map(movie => (
-                    <MovieItem movie={movie} />
-
-
-                ))}
+                {movies.map(movie => {
+                    return (
+                        <div key={movie.id}>
+                            <MovieItem movie={movie} />
+                        </div>
+                    )
+                })}
             </section>
         </main>
 

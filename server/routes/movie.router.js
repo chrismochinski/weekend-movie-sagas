@@ -17,7 +17,11 @@ router.get('/', (req, res) => {
 
 
 router.get('/movie-details/:id', (req,res) => {
-  const queryText = `SELECT * FROM "movies" WHERE "id" = $1;`;
+  const queryText = `SELECT "movies"."id", "description", "poster", "title", ARRAY_AGG("name") FROM "genres"
+  JOIN "movies_genres" ON "movies_genres"."genre_id" = "genres"."id"
+  JOIN "movies" ON "movies_genres"."movie_id" = "movies"."id"
+  WHERE "movies"."id" = $1
+  GROUP BY "movies"."id";`;
   pool.query(queryText, [req.params.id])
   .then((result) => {res.send(result.rows[0]); })
   .catch((error) => {

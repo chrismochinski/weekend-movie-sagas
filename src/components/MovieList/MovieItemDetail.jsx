@@ -4,8 +4,15 @@ import { useSelector } from 'react-redux';
 
 function MovieItemDetail() {
 
+
+
     const movieDetails = useSelector(store => store.selectedMovie);
+    const genreArray = useSelector(store => store.selectedMovie.array_agg)
     const history = useHistory();
+
+    console.log('movie detail:', movieDetails);
+    console.log('genre details:', genreArray);
+
 
     const goBack = () => {
         history.push('/');
@@ -18,7 +25,10 @@ function MovieItemDetail() {
             <h3>{movieDetails.description}</h3>
             <h2>Genres:</h2>
             <h4>GENRES GO HERE:</h4>
-            <h3>genres</h3>
+            <h1>{genreArray}</h1>
+               
+            
+            
             <button onClick={() => goBack()}>Go Back</button>
         </div>
     )
