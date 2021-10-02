@@ -14,6 +14,7 @@ function MovieList() {
     useEffect(() => {
         console.log('Page loaded. Fetching movies:', movies)
         dispatch({ type: 'FETCH_MOVIES' });
+        dispatch({ type: 'FETCH_GENRES' });
     }, []);
 
 
@@ -23,8 +24,8 @@ function MovieList() {
             <h1>MovieList</h1>
             <section className="movies">
                 {movies.map(movie => (
-
                     <MovieItem movie={movie} />
+
 
                 ))}
             </section>
