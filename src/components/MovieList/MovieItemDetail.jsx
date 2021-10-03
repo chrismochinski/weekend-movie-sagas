@@ -9,14 +9,14 @@ function MovieItemDetail() {
 
     const genreArray = useSelector(store => store.selectedMovie.array_agg)
     const movieDetails = useSelector(store => store.selectedMovie);
-    const arrayList = useSelector(store => store);
+    const genreReducerArray = useSelector(store => store.selectedGenreReducer);
 
 
 
-    console.log('array list is:', arrayList.genres)
     console.log('genre details:', genreArray);
     console.log('movie detail:', movieDetails);
-   
+    console.log('NEW GENREREDUCER ARRAY:', genreReducerArray);
+
 
     const goBack = () => {
         history.push('/');
@@ -31,16 +31,12 @@ function MovieItemDetail() {
             <h3>{movieDetails.description}</h3>
             <h2>Genres:</h2>
             <h4>GENRES GO HERE:</h4>
-            
-            <h1>{genreArray}</h1>
-{/*             
-            
+
             <ul>
-                {genreArray.map(genre => (
-                    {genre}
+                {genreReducerArray.map((genre) => (
+                    <li key={genre.name}>{genre.name}</li>
                 ))}
             </ul>
-             */}
             <button onClick={() => goBack()}>Go Back</button>
         </div>
     )

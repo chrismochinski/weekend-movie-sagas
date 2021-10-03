@@ -22,7 +22,6 @@ function MovieList() {
     };
 
 
-
     const handleMovieClick = (movie) => {
         // console.log(`clicked movie id: ${movie.id}, ${movie.title}`)
         dispatch({ type: 'FETCH_MOVIE_DETAILS', payload: movie })
@@ -31,7 +30,6 @@ function MovieList() {
     };
 
   
-
     return (
         <main>
 
