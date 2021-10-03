@@ -10,13 +10,16 @@ function MovieItemDetail() {
     const genreArray = useSelector(store => store.selectedMovie.array_agg)
     const history = useHistory();
 
+
+
     console.log('movie detail:', movieDetails);
     console.log('genre details:', genreArray);
-
 
     const goBack = () => {
         history.push('/');
     }
+
+   
 
     return (
         <div className='detailsPage'>
@@ -26,7 +29,11 @@ function MovieItemDetail() {
             <h2>Genres:</h2>
             <h4>GENRES GO HERE:</h4>
             <h1>{genreArray}</h1>
-               
+               {/* <ul>
+                   {genreArray.map((genre) => (
+                       <li>{genre}</li>
+                   ))}
+               </ul> */}
             
             
             <button onClick={() => goBack()}>Go Back</button>

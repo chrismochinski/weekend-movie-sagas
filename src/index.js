@@ -17,6 +17,7 @@ function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
     yield takeEvery('FETCH_MOVIE_DETAILS', fetchMovieDetails);
     yield takeEvery('FETCH_GENRES', fetchAllGenres);
+    // yield takeEvery('FETCH_MOVIE_GENRES', fetchMovieGenres); //updated
 }
 
 //SAGA - GET ALL movies
@@ -43,9 +44,6 @@ function* fetchAllGenres() {
     }
 }
 
-
-
-
 //SAGA - GET DETAILS
 function* fetchMovieDetails(action) {
     try {
@@ -59,8 +57,17 @@ function* fetchMovieDetails(action) {
     }
 }
 
-
-
+// function* fetchMovieGenres(action) { //updated
+//     try {
+//         console.log('fetch SELECTED movie genres in index.js', action)
+//         const selectedMovie = action.payload;
+//         console.log('selectedMovieGenre on index.js is:', selectedMovie);
+//         const selectedMovieGenre = yield axios.get(`/api/genre/selected-movie-genre/${selectedMovie.id}`);
+//         yield put({ type: 'SET_SELECTED_MOVIE_GENRE', payload: selectedMovieGenre.data })
+//     } catch (error) {
+//         console.log('error in fetchMovieDetails:', error)
+//     }
+// }
 
 //reducer NEW - for //SAGA GET DETAILS
 const selectedMovie = (state = {}, action) => { //empty object for now, will load and display on MovieItemDetail.jsx
@@ -74,6 +81,17 @@ const selectedMovie = (state = {}, action) => { //empty object for now, will loa
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
+
+
+// // Used to store the movie genres
+// const selectedGenreReducer = (state = [], action) => {
+//     switch (action.type) {
+//         case 'SET_SELECTED_MOVIE_GENRE':
+//             return action.payload; //updated this should be JUST selected genres
+//         default:
+//             return state;
+//     }
+// }
 
 // REDUCER for MOVIES
 // Used to store movies returned from the server
@@ -104,6 +122,7 @@ const storeInstance = createStore(
         movies,
         genres,
         selectedMovie,
+        // selectedGenreReducer
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
