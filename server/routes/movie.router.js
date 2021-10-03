@@ -19,7 +19,6 @@ router.get('/', (req, res) => {
 
 
 
-
 //SELECTED MOVIE
 router.get('/movie-details/:id', (req,res) => {
   const queryText = `SELECT "movies"."id", "description", "poster", "title", ARRAY_AGG("name") FROM "genres"

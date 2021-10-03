@@ -13,10 +13,8 @@ function MovieList() {
 
 
     useEffect(() => {
-        // console.log('Page loaded. Fetching movies:', movies)
         dispatch({ type: 'FETCH_MOVIES' });
-        dispatch({ type: 'FETCH_GENRES' });  //idea
-        // console.log('genres passed in as:', genres)
+        dispatch({ type: 'FETCH_GENRES' });  
     }, []);
 
     const goToMoviePage = () => {
@@ -28,7 +26,8 @@ function MovieList() {
     const handleMovieClick = (movie) => {
         // console.log(`clicked movie id: ${movie.id}, ${movie.title}`)
         dispatch({ type: 'FETCH_MOVIE_DETAILS', payload: movie })
-        history.push('/movie-details'); //idea we need to delay this...
+        dispatch({ type: 'FETCH_GENRE_DETAILS', payload: movie }) //updated
+        history.push('/movie-details'); 
     };
 
   
