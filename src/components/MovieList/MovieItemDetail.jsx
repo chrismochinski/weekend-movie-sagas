@@ -13,8 +13,6 @@ function MovieItemDetail() {
 
 
 
-
-
     console.log('array list is:', arrayList.genres)
     console.log('genre details:', genreArray);
     console.log('movie detail:', movieDetails);
@@ -34,13 +32,12 @@ function MovieItemDetail() {
             <h2>Genres:</h2>
             <h4>GENRES GO HERE:</h4>
             <h1>{genreArray}</h1>
-            {/* <ul>
-                   {arrayOfGenres.map((genre) => (
-                       <li>{genre}</li>
-                   ))}
-               </ul> */}
-
-
+{/*             
+            <ul>
+                {genreArray.map((genre) => {
+                    <li>{genre}</li>
+                })}
+            </ul> */}
             <button onClick={() => goBack()}>Go Back</button>
         </div>
     )

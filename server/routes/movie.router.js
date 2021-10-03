@@ -23,13 +23,12 @@ router.get('/movie-details/:id', (req,res) => {
   WHERE "movies"."id" = $1
   GROUP BY "movies"."id";`;
   pool.query(queryText, [req.params.id])
-  .then((result) => {res.send(result.rows[0]); })
-  .catch((error) => {
+  .then((result) => {res.send(result.rows[0]); }) //.then is a "promise" ("you'd better come back here with this!") on success (done with query? do this...)
+  .catch((error) => {                             //.catch is also a promise if anything goes boom boom 
     console.log('error on server side movie details', error)
     res.sendStatus(500);
   });
 });
-
 
 
 router.post('/', (req, res) => {
