@@ -11,21 +11,41 @@ import createSagaMiddleware from 'redux-saga';
 import { takeEvery, put } from 'redux-saga/effects';
 import axios from 'axios';
 
+
+
 //saga - ROOT
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
     yield takeEvery('FETCH_MOVIE_DETAILS', fetchMovieDetails);
     yield takeEvery('FETCH_GENRES', fetchAllGenres);
+    yield takeEvery('ADD_MOVIE', addMovie);
     // yield takeEvery('FETCH_MOVIE_GENRES', fetchMovieGenres); //updated
 }
+
+
+//SAGA - adding movie //updated
+
+function* addMovie(action) {
+    // send new movie to DB
+    try {
+        console.log('adding action.payload - index.js:', action.payload);
+        const newMovieToAdd = action.payload;
+        console.log('NEW MOVIE TO ADD INDEX.JS IS:', newMovieToAdd)
+        yield axios.post('/api/movie', {newMovieToAdd});
+        yield put({ type: 'FETCH_MOVIES' })
+    } catch (error) {
+        console.log('error in sending new flick, index.js:', error)
+    }
+}
+
 
 //SAGA - GET ALL movies
 function* fetchAllMovies() {
     // get all movies from the DB
     try {
         const movies = yield axios.get('/api/movie/');
-        console.log('get all(index.js):', movies.data);
+        // console.log('get all(index.js):', movies.data);
         yield put({ type: 'SET_MOVIES', payload: movies.data });
     } catch (error) {
         console.error('get all error:', error);
@@ -37,7 +57,7 @@ function* fetchAllGenres() {
     // get all genres from the DB
     try {
         const genres = yield axios.get('/api/genre/');
-        console.log('get all genres(index.js):', genres.data);
+        // console.log('get all genres(index.js):', genres.data);
         yield put({ type: 'SET_GENRES', payload: genres.data });
     } catch (error) {
         console.error('get all error:', error);
@@ -47,9 +67,9 @@ function* fetchAllGenres() {
 //SAGA - GET DETAILS
 function* fetchMovieDetails(action) {
     try {
-        console.log('fetch movie details index.js action:', action)
+        // console.log('fetch movie details index.js action:', action)
         const selectedMovie = action.payload;
-        console.log('selectedMovie on index.js is:', selectedMovie);
+        // console.log('selectedMovie on index.js is:', selectedMovie);
         const movieDetails = yield axios.get(`/api/movie/movie-details/${selectedMovie.id}`);
         yield put({ type: 'SET_MOVIE_DETAILS', payload: movieDetails.data })
     } catch (error) {
@@ -70,10 +90,10 @@ function* fetchMovieDetails(action) {
 // }
 
 //reducer NEW - for //SAGA GET DETAILS
-const selectedMovie = (state = {}, action) => { //empty object for now, will load and display on MovieItemDetail.jsx
+const selectedMovie = (state = [], action) => { //empty object for now, will load and display on MovieItemDetail.jsx
     switch (action.type) {
         case 'SET_MOVIE_DETAILS':
-            return action.payload
+            return action.payload;
         default:
             return state;
     }
@@ -106,7 +126,7 @@ const movies = (state = [], action) => {
 
 // REDUCER for GENRES
 // Used to store the movie genres
-const genres = (state = [], action) => {
+const genres = (state = [], action) => { //object or array????
     switch (action.type) {
         case 'SET_GENRES':
             return action.payload;

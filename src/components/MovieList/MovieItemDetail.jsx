@@ -31,13 +31,16 @@ function MovieItemDetail() {
             <h3>{movieDetails.description}</h3>
             <h2>Genres:</h2>
             <h4>GENRES GO HERE:</h4>
+            
             <h1>{genreArray}</h1>
 {/*             
+            
             <ul>
-                {genreArray.map((genre) => {
-                    <li>{genre}</li>
-                })}
-            </ul> */}
+                {genreArray.map(genre => (
+                    {genre}
+                ))}
+            </ul>
+             */}
             <button onClick={() => goBack()}>Go Back</button>
         </div>
     )

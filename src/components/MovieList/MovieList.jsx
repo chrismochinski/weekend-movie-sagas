@@ -1,10 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './MovieList.css';
-import { HashRouter as Router, Route, Link } from 'react-router-dom';
-
 import { useHistory } from 'react-router-dom';
-// import MovieItem from './MovieItem';
 
 function MovieList() {
 
@@ -16,10 +13,10 @@ function MovieList() {
 
 
     useEffect(() => {
-        console.log('Page loaded. Fetching movies:', movies)
+        // console.log('Page loaded. Fetching movies:', movies)
         dispatch({ type: 'FETCH_MOVIES' });
         dispatch({ type: 'FETCH_GENRES' });  //idea
-        console.log('genres passed in as:', genres)
+        // console.log('genres passed in as:', genres)
     }, []);
 
     const goToMoviePage = () => {
@@ -29,7 +26,7 @@ function MovieList() {
 
 
     const handleMovieClick = (movie) => {
-        console.log(`clicked movie id: ${movie.id}, ${movie.title}`)
+        // console.log(`clicked movie id: ${movie.id}, ${movie.title}`)
         dispatch({ type: 'FETCH_MOVIE_DETAILS', payload: movie })
         history.push('/movie-details'); //idea we need to delay this...
     };

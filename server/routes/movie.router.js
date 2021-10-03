@@ -3,6 +3,8 @@ const router = express.Router();
 const pool = require('../modules/pool')
 
 
+
+//GET ALL MOVIES
 router.get('/', (req, res) => {
   const query = `SELECT * FROM movies ORDER BY "title" ASC`;
   pool.query(query)
@@ -16,6 +18,9 @@ router.get('/', (req, res) => {
 });
 
 
+
+
+//SELECTED MOVIE
 router.get('/movie-details/:id', (req,res) => {
   const queryText = `SELECT "movies"."id", "description", "poster", "title", ARRAY_AGG("name") FROM "genres"
   JOIN "movies_genres" ON "movies_genres"."genre_id" = "genres"."id"
@@ -31,8 +36,11 @@ router.get('/movie-details/:id', (req,res) => {
 });
 
 
+
+
+//WHAT IS EVEN HAPPENING HERE
 router.post('/', (req, res) => {
-  console.log(req.body);
+  console.log('INCOMING req.body on router:', req.body);
   // RETURNING "id" will give us back the id of the created movie
   const insertMovieQuery = `
   INSERT INTO "movies" ("title", "poster", "description")
