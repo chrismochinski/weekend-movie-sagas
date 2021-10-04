@@ -11,7 +11,6 @@ import createSagaMiddleware from 'redux-saga';
 import { takeEvery, put } from 'redux-saga/effects';
 import axios from 'axios';
 
-
 //--------------------------------------------//
 //---------------  SAGA LAND:  ---------------//
 //--------------------------------------------//
@@ -28,9 +27,7 @@ function* rootSaga() {
 // SAGA - details for SELECTED movie
 function* fetchMovieDetails(action) {
     try {
-        // console.log('fetch movie details index.js action:', action)
         const selectedMovie = action.payload;
-        // console.log('selectedMovie on index.js is:', selectedMovie);
         const movieDetails = yield axios.get(`/api/movie/movie-details/${selectedMovie.id}`);
         yield put({ type: 'SET_MOVIE_DETAILS', payload: movieDetails.data })
     } catch (error) {
@@ -43,7 +40,6 @@ function* fetchGenreDetails(action) {
     try {
         console.log('fetch SELECTED movie genres in index.js', action)
         const selectedMovie = action.payload;
-        // console.log('selectedMovie on index.js is:', selectedMovie);
         const selectedMovieGenre = yield axios.get(`/api/genre/selected-movie-genre/${selectedMovie.id}`);
         yield put({ type: 'SET_SELECTED_MOVIE_GENRE', payload: selectedMovieGenre.data })
         console.log('index.js selectedMovieGenre.data:', selectedMovieGenre.data);
@@ -52,9 +48,8 @@ function* fetchGenreDetails(action) {
     }
 }
 
-// SAGA 
+// SAGA - add movie
 function* addMovie(action) {
-    // send new movie to DB
     try {
         console.log('adding action.payload - index.js:', action.payload);
         yield axios({
@@ -68,33 +63,28 @@ function* addMovie(action) {
     }
 }
 
-// SAGA 
+// SAGA - get all movies
 function* fetchAllMovies() {
-    // get all movies from the DB
     try {
         const movies = yield axios.get('/api/movie/');
-        // console.log('get all(index.js):', movies.data);
         yield put({ type: 'SET_MOVIES', payload: movies.data });
     } catch (error) {
         console.error('get all error:', error);
     }
 }
 
-// SAGA 
+// SAGA fetch all genres (for dropdown)
 function* fetchAllGenres() {
     try {
         const genres = yield axios.get('/api/genre/');
-        // console.log('get all genres(index.js):', genres.data);
         yield put({ type: 'SET_GENRES', payload: genres.data });
     } catch (error) {
         console.error('get all error:', error);
     }
 }
 
-
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
-
 
 //----------------------------------------------//
 //-----------------REDUCER LAND:----------------//

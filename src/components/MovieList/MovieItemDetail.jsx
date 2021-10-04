@@ -7,11 +7,10 @@ function MovieItemDetail() {
 
     const history = useHistory();
 
-    // const genreArray = useSelector(store => store.selectedMovie.array_agg)
     const movieDetails = useSelector(store => store.selectedMovie);
     const genreReducerArray = useSelector(store => store.selectedGenreReducer);
 
-    const goBack = () => {
+    const goBack = () => { //navigate back to list page
         history.push('/');
     }
 
@@ -21,7 +20,6 @@ function MovieItemDetail() {
             <img width="300px" src={movieDetails.poster} />
             <p className="detailPageDescription">{movieDetails.description}</p>
             <h2>Genres:</h2>
-
             <ul>
                 {genreReducerArray.map((genre) => (
                     <li key={genre.name}>{genre.name}</li>
