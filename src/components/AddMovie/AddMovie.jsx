@@ -10,12 +10,7 @@ function AddMovie() {
     const dispatch = useDispatch();
 
     // declaring state of empty "new movie" that will be added
-    let [newMovie, setNewMovie] = useState({
-        title: '',
-        description: '',
-        poster: '',
-        genre: '',
-    })
+    let [newMovie, setNewMovie] = useState({});
 
     let selectedGenre = ''; //empty genre item to fill later
 
@@ -40,19 +35,19 @@ function AddMovie() {
 
     const newMovieGenre = (event) => {
         //Similar to in redux -- we dont want to get rid of the id field when we update name
-        setNewMovie({ ...newMovie, genre: event.target.value });
+        setNewMovie({ ...newMovie, genre_id: event.target.value });
     }
 
     const confirmAddMovie = (event) => {
         event.preventDefault();
         console.log('clicked confirm, newMovie is:', newMovie);
         dispatch({ type: 'ADD_MOVIE', payload: newMovie});
-        setNewMovie({
-            title: '',
-            description: '',
-            poster: '',
-            genre: '',
-        })
+        // setNewMovie({
+        //     title: '', 
+        //     description: '',
+        //     poster: '', 
+        //     genre_id: '' 
+        // })
     }
 
   
@@ -73,7 +68,7 @@ function AddMovie() {
 
                 <select onChange={newMovieGenre}>
                     {genresArray.map((genre) => (
-                        <option key={genre.id} value={genre.name}>{genre.name}</option>
+                        <option key={genre.id} value={genre.id}>{genre.name}</option>
                     ))};
                 </select>
 

@@ -46,15 +46,16 @@ function* addMovie(action) {
     // send new movie to DB
     try {
         console.log('adding action.payload - index.js:', action.payload);
-        const newMovieToAdd = action.payload;
-        console.log('NEW MOVIE TO ADD INDEX.JS IS:', newMovieToAdd)
-        yield axios.post('/api/movie', { newMovieToAdd });
+        yield axios({
+            method: 'POST',
+            url: '/api/movie/',
+            data: action.payload
+        });
         yield put({ type: 'FETCH_MOVIES' })
     } catch (error) {
         console.log('error in sending new flick, index.js:', error)
     }
 }
-
 
 //SAGA - GET ALL movies
 function* fetchAllMovies() {
@@ -112,7 +113,7 @@ const sagaMiddleware = createSagaMiddleware();
 const selectedGenreReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_SELECTED_MOVIE_GENRE':
-            return action.payload; //updated this should be JUST selected genres
+            return action.payload; 
         default:
             return state;
     }
