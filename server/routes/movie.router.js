@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
 
 // get relevant movie details for USER-SELECTED movie
 router.get('/movie-details/:id', (req,res) => {
-  const queryText = `SELECT "movies"."id", "description", "poster", "title", ARRAY_AGG("name") FROM "genres"
+  const queryText = `SELECT "movies"."id", "description", "poster", "title" FROM "genres"
   JOIN "movies_genres" ON "movies_genres"."genre_id" = "genres"."id"
   JOIN "movies" ON "movies_genres"."movie_id" = "movies"."id"
   WHERE "movies"."id" = $1
@@ -30,7 +30,7 @@ router.get('/movie-details/:id', (req,res) => {
   });
 });
 
-// 
+// Add movie route
 router.post('/', (req, res) => {
   console.log('INCOMING req.body on router:', req.body); //added to confirm req.body
   // RETURNING "id" will give us back the id of the created movie

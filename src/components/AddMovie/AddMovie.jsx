@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-
 function AddMovie() {
 
     const genresArray = useSelector(store => store.genres) 
@@ -11,12 +10,6 @@ function AddMovie() {
 
     // declaring state of empty "new movie" that will be added
     let [newMovie, setNewMovie] = useState({});
-
-    let selectedGenre = ''; //empty genre item to fill later
-
-    // --------------------------------------------//
-    //BELOW - handling form inputs and button confirm:
-    // --------------------------------------------//
 
     const newMovieTitle = (event) => {
         //Similar to in redux -- we dont want to get rid of the id field when we update name
@@ -42,19 +35,19 @@ function AddMovie() {
         event.preventDefault();
         console.log('clicked confirm, newMovie is:', newMovie);
         dispatch({ type: 'ADD_MOVIE', payload: newMovie});
-        // setNewMovie({
-        //     title: '', 
-        //     description: '',
-        //     poster: '', 
-        //     genre_id: '' 
-        // })
+        setNewMovie({
+            title: '', 
+            description: '',
+            poster: '', 
+            genre_id: '' 
+        })
     }
-
-  
 
     const backToHome = () => {
         history.push('/');
     }
+
+
     return (
 
         <div>
@@ -62,11 +55,11 @@ function AddMovie() {
 
             <form onSubmit={confirmAddMovie}>
 
-                <input type='text' placeholder='Title' onChange={newMovieTitle} /><br />
-                <input type='text' placeholder='Image URL' onChange={newMoviePoster} /><br />
-                <textarea type='text' placeholder='Description' onChange={newMovieDescription} /><br />
+                <input type='text' placeholder='Title' value={newMovie.title} onChange={newMovieTitle} /><br />
+                <input type='text' placeholder='Image URL' value={newMovie.poster} onChange={newMoviePoster} /><br />
+                <textarea type='text' placeholder='Description' value={newMovie.description} onChange={newMovieDescription} /><br />
 
-                <select onChange={newMovieGenre}>
+                <select value={newMovie.genre_id} onChange={newMovieGenre}>
                     {genresArray.map((genre) => (
                         <option key={genre.id} value={genre.id}>{genre.name}</option>
                     ))};
@@ -91,5 +84,3 @@ function AddMovie() {
 }
 
 export default AddMovie;
-
-// https://image.tmdb.org/t/p/w370_and_h556_bestv2/aMpyrCizvSdc0UIMblJ1srVgAEF.jpg

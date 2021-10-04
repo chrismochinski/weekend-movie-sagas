@@ -7,35 +7,50 @@
 
 #### <span style="color: #9ED2F0">_Duration: Two-Day Sprint_</span><br />
 
-The "Do Stuff!" web app allows a user to input a task and description, as well as priority level, into a to-do list.
-
-The user is also able to mark a task as complete and even delete the task from the list altogether.<br />
+Do you like movies? Me too! Here's an app full of fun factoids for a few flicks...and you can even add you own.<br />
 
 ---
+<br />
 
 ![gif during use](./README-visuals/toDoPreview.gif)
+
 ---
-![gif completing list](./README-visuals/toDoPreview2.gif)
+
+_This chart represents the initial, conceptual flow of the app pre-design. Client to database moves right to left. [Lucid Chart](www.lucidchart.com) rocks, by the way._
+
+
+<img src="./README-visuals/moviesFlow.png" />
+
+---
+---
+
+
+
+
 
 <br />
 
-### Prerequisites
+
+## Prerequisites
 ---
 - Internet browser application (e.g. Chrome, Safari)
 <br /> <br />
 
 ## Installation
 ---
-- No particular installation steps are required.
-<br />
+- Create a database using the provided .sql file called <b> "saga_movies_weekend" </b>and run the included queries.
+- Run `npm install` from the project root directory.
+- Run `npm run server` to run the node server.
+- In a separate terminal tab, run `npm run client` to launch .the React app
+
 <br />
 ## Usage
 ---
 ##### _please note that steps 1 - 3 do not have to happen in any particular order_
 
-1. Enter task title (_required_)
-2. Enter task description (_required_)
-3. Select priority level from dropdown menu (_required_)
+1. View the list of movies via their posters on the home page.
+2. Click on any movie's title or poster to open a details page.
+3. On the details page, you can click 
 4. Press the <img src="./README-visuals/submitButton.png" alt="Submit" style="width:83px;"> button to submit your task to the list
 5. At any point, press the <img src="./README-visuals/completeButton.png" alt="Complete" style="width:70px;"> button to mark a task as complete
 6. At any point, press the <img src="./README-visuals/deleteButton.png" alt="Delete" style="width:55px;"> button to remove a task from the list

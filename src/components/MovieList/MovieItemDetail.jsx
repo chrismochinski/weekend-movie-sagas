@@ -7,21 +7,13 @@ function MovieItemDetail() {
 
     const history = useHistory();
 
-    const genreArray = useSelector(store => store.selectedMovie.array_agg)
+    // const genreArray = useSelector(store => store.selectedMovie.array_agg)
     const movieDetails = useSelector(store => store.selectedMovie);
     const genreReducerArray = useSelector(store => store.selectedGenreReducer);
-
-
-    console.log('genre details:', genreArray);
-    console.log('movie detail:', movieDetails);
-    console.log('NEW GENREREDUCER ARRAY:', genreReducerArray);
-
 
     const goBack = () => {
         history.push('/');
     }
-
-
 
     return (
         <div className='detailsPage'>
