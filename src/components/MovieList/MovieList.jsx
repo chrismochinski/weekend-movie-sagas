@@ -42,9 +42,9 @@ function MovieList() {
                 {movies.map(movie => {
                     return (
                         <div key={movie.id}>
-                            <div className="clickableMoviePoster" key={movie.id} >
-                                <h3 onClick={() => handleMovieClick(movie)}>{movie.title}</h3>
-                                <img onClick={() => handleMovieClick(movie)} src={movie.poster} alt={movie} />
+                            <div className="posterTitleDiv" key={movie.id} >
+                                <h3 className="movieTitles" onClick={() => handleMovieClick(movie)}>{movie.title}</h3>
+                                <img className="moviePosters" onClick={() => handleMovieClick(movie)} src={movie.poster} alt={movie} />
                             </div> 
                         </div>
                     )

@@ -12,7 +12,9 @@ Do you like movies? Me too! Here's an app full of fun factoids for a few flicks.
 ---
 <br />
 
-![gif during use](./README-visuals/toDoPreview.gif)
+![****](./README-visuals/toDoPreview.gif)
+
+###<font color="red"> _--demo gif coming soon!--_</font>
 
 ---
 
@@ -20,7 +22,6 @@ _This chart represents the initial, conceptual flow of the app pre-design. Clien
 
 
 <img src="./README-visuals/moviesFlow.png" />
-
 ---
 ---
 
@@ -44,16 +45,17 @@ _This chart represents the initial, conceptual flow of the app pre-design. Clien
 - In a separate terminal tab, run `npm run client` to launch .the React app
 
 <br />
+
 ## Usage
+
 ---
-##### _please note that steps 1 - 3 do not have to happen in any particular order_
+##### _please note that the following steps are in no particular order
 
 1. View the list of movies via their posters on the home page.
 2. Click on any movie's title or poster to open a details page.
-3. On the details page, you can click 
-4. Press the <img src="./README-visuals/submitButton.png" alt="Submit" style="width:83px;"> button to submit your task to the list
-5. At any point, press the <img src="./README-visuals/completeButton.png" alt="Complete" style="width:70px;"> button to mark a task as complete
-6. At any point, press the <img src="./README-visuals/deleteButton.png" alt="Delete" style="width:55px;"> button to remove a task from the list
+3. On the details page, you can click "Go Back" to navigate back to the list page.
+4. At any time, you can press the `Add Movie` button to open the `Add Movie` form page
+5. Enter information for your movie including a poster image URL. All fields are required
 <br /><br />
 
 ## Built with
@@ -79,10 +81,10 @@ If you have questions or issues, please do not hesitate to email me at: [cmochin
 
 ---
 <br />
+
 <img align="left" src="./README-visuals/readme-signature-pic.png" alt="mo" style="width:115px;">
-<br/ >
 
 
-##### _[My Twitter (@HolyMosesMusic)](https://twitter.com/holymosesmusic)_ 
-##### _[My GitHub](https://github.com/chrismochinski)_ 
-##### _[My LinkedIn](https://www.linkedin.com/in/chrismochinski/)_ 
+_[My Twitter (@HolyMosesMusic)](https://twitter.com/holymosesmusic)_ <br />
+_[My GitHub](https://github.com/chrismochinski)_ <br />
+_[My LinkedIn](https://www.linkedin.com/in/chrismochinski/)_ 

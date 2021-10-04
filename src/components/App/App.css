@@ -8,6 +8,7 @@
   height: 150px;
   padding: 20px;
   color: white;
+  
 }
 
 .App-title {
@@ -24,6 +25,20 @@
 }
 
 ul {
-  list-style-type: none;
   list-style: inside;
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+  font-size: 1.4em;
+}
+
+
+/* -------MovieItemDetail------- */
+
+.detailPageDescription {
+  font-size: 1.2em;
+  margin-left: 50px;
+  margin-right: 50px;
 }

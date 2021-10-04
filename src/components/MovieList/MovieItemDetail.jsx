@@ -19,9 +19,8 @@ function MovieItemDetail() {
         <div className='detailsPage'>
             <h1>Details for {movieDetails.title}!</h1>
             <img width="300px" src={movieDetails.poster} />
-            <h3>{movieDetails.description}</h3>
+            <p className="detailPageDescription">{movieDetails.description}</p>
             <h2>Genres:</h2>
-            <h4>GENRES GO HERE:</h4>
 
             <ul>
                 {genreReducerArray.map((genre) => (

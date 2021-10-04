@@ -3,6 +3,19 @@
     flex-wrap: wrap;
 }
 
-.clickableMoviePoster {
+.movieTitles {
     cursor: pointer;
+}
+
+.moviePosters {
+    cursor: pointer;
+    height: 360px;
+}
+
+posterTitleDiv {
+    width: 400px;
+}
+
+button {
+    font-size: 20px;
 }
