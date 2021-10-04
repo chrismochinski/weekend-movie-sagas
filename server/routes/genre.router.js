@@ -17,7 +17,7 @@ router.get('/selected-movie-genre/:id', (req,res) => {
   });
 }); 
 
-// get ALL genres (primarily for populating dropdown on add page)
+// get ALL genres 
 router.get('/', (req, res) => {
   const genresQuery= `SELECT * FROM "genres" ORDER BY "name";`;
   pool.query(genresQuery)

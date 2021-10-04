@@ -25,7 +25,7 @@ function MovieList() {
     const handleMovieClick = (movie) => {
         // console.log(`clicked movie id: ${movie.id}, ${movie.title}`)
         dispatch({ type: 'FETCH_MOVIE_DETAILS', payload: movie })
-        dispatch({ type: 'FETCH_GENRE_DETAILS', payload: movie }) //updated
+        dispatch({ type: 'FETCH_GENRE_DETAILS', payload: movie }) 
         history.push('/movie-details'); 
     };
 
@@ -45,7 +45,7 @@ function MovieList() {
                             <div className="clickableMoviePoster" key={movie.id} >
                                 <h3 onClick={() => handleMovieClick(movie)}>{movie.title}</h3>
                                 <img onClick={() => handleMovieClick(movie)} src={movie.poster} alt={movie} />
-                            </div>
+                            </div> 
                         </div>
                     )
                 })}

@@ -12,7 +12,6 @@ function MovieItemDetail() {
     const genreReducerArray = useSelector(store => store.selectedGenreReducer);
 
 
-
     console.log('genre details:', genreArray);
     console.log('movie detail:', movieDetails);
     console.log('NEW GENREREDUCER ARRAY:', genreReducerArray);

@@ -12,19 +12,33 @@ import { takeEvery, put } from 'redux-saga/effects';
 import axios from 'axios';
 
 
+//--------------------------------------------//
+//---------------  SAGA LAND:  ---------------//
+//--------------------------------------------//
 
-//saga - ROOT
-// Create the rootSaga generator function
+// SAGA - root listener
 function* rootSaga() {
-    yield takeEvery('FETCH_MOVIES', fetchAllMovies);
+    yield takeEvery('FETCH_MOVIES', fetchAllMovies); 
     yield takeEvery('FETCH_MOVIE_DETAILS', fetchMovieDetails);
     yield takeEvery('FETCH_GENRES', fetchAllGenres);
     yield takeEvery('ADD_MOVIE', addMovie);
-    yield takeEvery('FETCH_GENRE_DETAILS', fetchGenreDetails); //updated
+    yield takeEvery('FETCH_GENRE_DETAILS', fetchGenreDetails); 
 }
 
-//SAGA - getting SPECIFIC MOVIE genre deets //updated
+// SAGA - details for SELECTED movie
+function* fetchMovieDetails(action) {
+    try {
+        // console.log('fetch movie details index.js action:', action)
+        const selectedMovie = action.payload;
+        // console.log('selectedMovie on index.js is:', selectedMovie);
+        const movieDetails = yield axios.get(`/api/movie/movie-details/${selectedMovie.id}`);
+        yield put({ type: 'SET_MOVIE_DETAILS', payload: movieDetails.data })
+    } catch (error) {
+        console.log('error in fetchMovieDetails:', error)
+    };
+};
 
+// SAGA - details for selected movie GENRE
 function* fetchGenreDetails(action) {
     try {
         console.log('fetch SELECTED movie genres in index.js', action)
@@ -38,10 +52,7 @@ function* fetchGenreDetails(action) {
     }
 }
 
-
-
-//SAGA - adding movie //updated
-
+// SAGA 
 function* addMovie(action) {
     // send new movie to DB
     try {
@@ -57,7 +68,7 @@ function* addMovie(action) {
     }
 }
 
-//SAGA - GET ALL movies
+// SAGA 
 function* fetchAllMovies() {
     // get all movies from the DB
     try {
@@ -69,9 +80,8 @@ function* fetchAllMovies() {
     }
 }
 
-//SAGA - GET ALL genres
+// SAGA 
 function* fetchAllGenres() {
-    // get all genres from the DB
     try {
         const genres = yield axios.get('/api/genre/');
         // console.log('get all genres(index.js):', genres.data);
@@ -81,68 +91,56 @@ function* fetchAllGenres() {
     }
 }
 
-//SAGA - GET DETAILS
-function* fetchMovieDetails(action) {
-    try {
-        // console.log('fetch movie details index.js action:', action)
-        const selectedMovie = action.payload;
-        // console.log('selectedMovie on index.js is:', selectedMovie);
-        const movieDetails = yield axios.get(`/api/movie/movie-details/${selectedMovie.id}`);
-        yield put({ type: 'SET_MOVIE_DETAILS', payload: movieDetails.data })
-    } catch (error) {
-        console.log('error in fetchMovieDetails:', error)
-    }
-}
-
-
-//reducer NEW - for //SAGA GET DETAILS
-const selectedMovie = (state = [], action) => { //empty object for now, will load and display on MovieItemDetail.jsx
-    switch (action.type) {
-        case 'SET_MOVIE_DETAILS':
-            return action.payload;
-        default:
-            return state;
-    }
-};
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
 
-// Used to store the movie genres
+//----------------------------------------------//
+//-----------------REDUCER LAND:----------------//
+//----------------------------------------------//
+
+// REDUCER - selected movie details
+const selectedMovie = (state = [], action) => { 
+    switch (action.type) {
+        case 'SET_MOVIE_DETAILS':
+            return action.payload;
+        default:
+            return state;
+    };
+};
+
+// REDUCER - selected movie genres
 const selectedGenreReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_SELECTED_MOVIE_GENRE':
-            return action.payload; 
+            return action.payload;
         default:
             return state;
     }
 }
 
-// REDUCER for MOVIES
-// Used to store movies returned from the server
+// REDUCER - all movies
 const movies = (state = [], action) => {
     switch (action.type) {
         case 'SET_MOVIES':
             return action.payload;
         default:
             return state;
-    }
-}
+    };
+};
 
-// REDUCER for GENRES
-// Used to store the movie genres
-const genres = (state = [], action) => { //object or array????
+// REDUCER - all genres (add page dropdown)
+const genres = (state = [], action) => {
     switch (action.type) {
         case 'SET_GENRES':
             return action.payload;
         default:
             return state;
-    }
-}
+    };
+};
 
-
-// Create one store that all components can use
+// REDUCER - store
 const storeInstance = createStore(
     combineReducers({
         movies,
@@ -154,7 +152,7 @@ const storeInstance = createStore(
     applyMiddleware(sagaMiddleware, logger),
 );
 
-// Pass rootSaga into our sagaMiddleware
+// Pass rootSaga into sagaMiddleware
 sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
