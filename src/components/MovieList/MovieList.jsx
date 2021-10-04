@@ -21,10 +21,9 @@ function MovieList() {
     };
 
     const handleMovieClick = (movie) => {
-        // console.log(`clicked movie id: ${movie.id}, ${movie.title}`)
         dispatch({ type: 'FETCH_MOVIE_DETAILS', payload: movie })
         dispatch({ type: 'FETCH_GENRE_DETAILS', payload: movie })
-        history.push('/movie-details');
+        history.push(`/movie-details/${movie.id}`); //updated
     };
 
 

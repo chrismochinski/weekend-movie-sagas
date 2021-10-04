@@ -18,7 +18,8 @@ function App() {
           <MovieList />
         </Route>
         
-        <Route exact path='/movie-details'>
+        {/* UPDATED LINE: added :id  */}
+        <Route exact path='/movie-details/:id'> 
           <MovieItemDetail />
         </Route>
 

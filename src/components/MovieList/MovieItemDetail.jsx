@@ -1,11 +1,15 @@
-import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom'; //updated
+import { useDispatch } from 'react-redux'; //updated
+import { useEffect } from 'react'; //updated
+
 
 
 function MovieItemDetail() {
 
     const history = useHistory();
+    const dispatch = useDispatch();
 
     const movieDetails = useSelector(store => store.selectedMovie);
     const genreReducerArray = useSelector(store => store.selectedGenreReducer);
@@ -13,6 +17,19 @@ function MovieItemDetail() {
     const goBack = () => { //navigate back to list page
         history.push('/');
     }
+
+    //updated
+
+    const { id } = useParams(); 
+
+    // const allParams = useParams(); 
+    // const movieId = allParams.id; 
+
+    useEffect(() => { 
+        dispatch({ type: 'FETCH_MOVIE_DETAILS', payload: { id: id } })
+    }); 
+
+    //updated 
 
     return (
         <div className='detailsPage'>
